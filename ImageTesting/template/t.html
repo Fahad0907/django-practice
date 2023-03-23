@@ -1,0 +1,26 @@
+<form action="">
+  <input type="file" id="file" />
+  <input type="text" id="text" />
+  <button onclick="handleFileUpload()" type="button">submit</button>
+</form>
+<script>
+  function handleFileUpload() {
+    const file = document.getElementById("file");
+    const text = document.getElementById("text").value;
+
+    const formData = new FormData();
+    formData.append("image", file.files[0]);
+    formData.append("name", text);
+
+    fetch("http://127.0.0.1:8000/", {
+      method: "POST",
+      body: formData,
+    })
+      .then((response) => {
+        console.log(response.status);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+</script>
