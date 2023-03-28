@@ -5,6 +5,7 @@ from rest_framework import status
 from .serializers import *
 from .models import *
 from django.http import Http404
+from django.views.generic import TemplateView
 # Create your views here.
 
 class CApiView(APIView):
@@ -50,3 +51,6 @@ class CompanyView(APIView):
         query = Company.objects.all()
         serializer = CompanySerializer(query,many=True)
         return Response(serializer.data)
+    
+class Base(TemplateView):
+    template_name = 'base.html'
