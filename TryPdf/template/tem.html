@@ -20,6 +20,12 @@
   </head>
   <body>
     <div class="container">
+      <label for="name-search">Search by Name:</label>
+      <select id="name-search">
+        <option value="">Select Name</option>
+        <option value="fahad">fahad</option>
+        <option value="shafin">shafin</option>
+      </select>
       <table id="table" class="table table-bordered mt-5">
         <thead>
           <th>Name</th>
@@ -50,6 +56,14 @@
       $(document).ready(() => {
         $("#table").DataTable({
           ordering: false,
+        });
+
+        var oTable;
+        oTable = $("#table").dataTable();
+
+        $("#name-search").change(function () {
+          console.log($(this).val());
+          oTable.fnFilter($(this).val());
         });
       });
     </script>
